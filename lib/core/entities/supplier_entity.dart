@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-/// Domain entity representing a supplier in the Koozen Admin system.
-/// Pure business object — no framework or persistence dependencies.
+/// Domain entity representing a supplier.
 class SupplierEntity extends Equatable {
   const SupplierEntity({
     required this.id,
@@ -13,7 +12,9 @@ class SupplierEntity extends Equatable {
     this.performanceMetrics,
     required this.createdAt,
     required this.updatedAt,
+    required this.apiKey,
   });
+
   final String id;
   final String name;
   final String website;
@@ -23,6 +24,7 @@ class SupplierEntity extends Equatable {
   final PerformanceMetrics? performanceMetrics;
   final DateTime createdAt;
   final DateTime updatedAt;
+  final String apiKey;
 
   SupplierEntity copyWith({
     String? id,
@@ -34,6 +36,7 @@ class SupplierEntity extends Equatable {
     PerformanceMetrics? performanceMetrics,
     DateTime? createdAt,
     DateTime? updatedAt,
+    String? apiKey,
   }) {
     return SupplierEntity(
       id: id ?? this.id,
@@ -45,6 +48,7 @@ class SupplierEntity extends Equatable {
       performanceMetrics: performanceMetrics ?? this.performanceMetrics,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      apiKey: apiKey ?? this.apiKey,
     );
   }
 
@@ -59,10 +63,10 @@ class SupplierEntity extends Equatable {
         performanceMetrics,
         createdAt,
         updatedAt,
+        apiKey,
       ];
 }
 
-/// API configuration for supplier integrations.
 class ApiConfig extends Equatable {
   const ApiConfig({
     required this.apiKey,
@@ -70,6 +74,7 @@ class ApiConfig extends Equatable {
     required this.baseUrl,
     this.extraParams = const {},
   });
+
   final String apiKey;
   final String apiSecret;
   final String baseUrl;
@@ -79,22 +84,33 @@ class ApiConfig extends Equatable {
   List<Object?> get props => [apiKey, apiSecret, baseUrl, extraParams];
 }
 
-/// Performance metrics for supplier evaluation.
 class PerformanceMetrics extends Equatable {
-  // percentage of products in stock
-
   const PerformanceMetrics({
     required this.deliveryRate,
     required this.productQuality,
     required this.competitivePricing,
     required this.availability,
+    required this.averageDeliveryTimeDays,
+    required this.fulfillmentRate,
+    required this.returnRate,
   });
-  final double deliveryRate; // percentage of orders delivered on time
-  final double productQuality; // average rating
-  final double competitivePricing; // relative score
+
+  final double deliveryRate;
+  final double productQuality;
+  final double competitivePricing;
   final double availability;
+  final int averageDeliveryTimeDays;
+  final double fulfillmentRate;
+  final double returnRate;
 
   @override
-  List<Object?> get props =>
-      [deliveryRate, productQuality, competitivePricing, availability];
+  List<Object?> get props => [
+        deliveryRate,
+        productQuality,
+        competitivePricing,
+        availability,
+        averageDeliveryTimeDays,
+        fulfillmentRate,
+        returnRate,
+      ];
 }

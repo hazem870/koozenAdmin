@@ -6,6 +6,7 @@ class UserEntity extends Equatable {
   final String id;
   final String name;
   final String email;
+  final String password;
   final String? phoneNumber;
   final String role; // e.g., admin, manager, editor, support
   final List<String> permissions; // granular permissions
@@ -19,6 +20,7 @@ class UserEntity extends Equatable {
     required this.id,
     required this.name,
     required this.email,
+    required this.password,
     this.phoneNumber,
     required this.role,
     this.permissions = const [],
@@ -33,6 +35,7 @@ class UserEntity extends Equatable {
     String? id,
     String? name,
     String? email,
+    String? password,
     String? phoneNumber,
     String? role,
     List<String>? permissions,
@@ -46,6 +49,7 @@ class UserEntity extends Equatable {
       id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,
+      password: email ?? this.password,
       phoneNumber: phoneNumber ?? this.phoneNumber,
       role: role ?? this.role,
       permissions: permissions ?? this.permissions,
@@ -62,6 +66,7 @@ class UserEntity extends Equatable {
         id,
         name,
         email,
+        password,
         phoneNumber,
         role,
         permissions,
@@ -92,8 +97,7 @@ class Preferences extends Equatable {
   }) {
     return Preferences(
       languageCode: languageCode ?? this.languageCode,
-      notificationsEnabled:
-          notificationsEnabled ?? this.notificationsEnabled,
+      notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
       themeMode: themeMode ?? this.themeMode,
     );
   }

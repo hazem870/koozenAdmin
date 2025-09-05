@@ -25,7 +25,7 @@ class ProductEntity extends Equatable {
   final double cost;
   final int stockQuantity;
   final String supplierId;
-  final List<String> imageUrls;
+  final List<Uri> imageUrls;
   final List<String> categories;
   final Map<String, dynamic> attributes; // e.g., color, size, options
   final DateTime createdAt;
@@ -40,7 +40,7 @@ class ProductEntity extends Equatable {
     double? cost,
     int? stockQuantity,
     String? supplierId,
-    List<String>? imageUrls,
+    List<Uri>? imageUrls,
     List<String>? categories,
     Map<String, dynamic>? attributes,
     DateTime? createdAt,
